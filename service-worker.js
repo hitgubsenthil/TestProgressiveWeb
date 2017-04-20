@@ -36,6 +36,6 @@ self.addEventListener('notificationclick', function(event) {
   event.notification.close();
 
   event.waitUntil(
-    clients.openWindow('https://hitgubsenthil.github.io/TestProgressiveWeb.github.io/')
+    self.clients.openWindow('https://hitgubsenthil.github.io/TestProgressiveWeb.github.io/')
   );
 });
