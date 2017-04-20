@@ -103,7 +103,7 @@ function subscribeToPushManager() {
 		$.ajax({
 			url: 'https://pwawebapi.azurewebsites.net/api/house/create',
 			type: 'POST',			
-			ata: JSON.stringify(arr),
+			data: JSON.stringify(arr),
 			contentType: 'application/json; charset=utf-8',
 			dataType: 'json',
 			async: false,
@@ -189,7 +189,7 @@ alert("notification");
 		$.ajax({
 			url: 'https://pwawebapi.azurewebsites.net/api/house/create',
 			type: 'POST',			
-			ata: JSON.stringify(arr),
+			data: JSON.stringify(arr),
 			contentType: 'application/json; charset=utf-8',
 			dataType: 'json',
 			async: false,
