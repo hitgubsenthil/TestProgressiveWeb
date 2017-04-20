@@ -88,12 +88,34 @@ function subscribeToPushManager() {
        // isPushEnabled = true;
 		alert("p256 :" +  subscription.getKey('p256dh'));
 		alert("auth :" + subscription.getKey('auth'));
+		var p256 = subscription.getKey('p256dh');
+		var auth = subscription.getKey('auth');
         // TODO: Send the subscriptionId and Endpoint to your server
         // and save it to send a push message at a later date
         var subscriptionId = subscription.subscriptionId;
         var endpoint = subscription.endpoint;
+		var arr = { 
+				"Endpoint" : endpoint,
+			 "P256" : p256,
+			 "auth" : auth
+			};
+		
+		$.ajax({
+			url: 'http://pwawebapi.azurewebsites.net/api/house/create',
+			type: 'POST',			
+			ata: JSON.stringify(arr),
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			async: false,
+			success: function(msg) {
+				alert(msg);
+			},
+			error: function(msg){
+				alert(msg.responseText);
+			}
+		});
 	
-        sendToServer(subscriptionId, endpoint);
+        //sendToServer(subscriptionId, endpoint);
         
         pushButton.textContent = 'Disable Push Messages';
         pushButton.disabled = false;
@@ -150,7 +172,34 @@ alert("notification");
       .then(function(subscription) {
         // Enable any UI which subscribes / unsubscribes from
         // push messages
-		alert(subscription);
+		alert("p256 :" +  subscription.getKey('p256dh'));
+		alert("auth :" + subscription.getKey('auth'));
+		var p256 = subscription.getKey('p256dh');
+		var auth = subscription.getKey('auth');
+        // TODO: Send the subscriptionId and Endpoint to your server
+        // and save it to send a push message at a later date
+        var subscriptionId = subscription.subscriptionId;
+        var endpoint = subscription.endpoint;
+		var arr = { 
+			"Endpoint" : endpoint,
+			 "P256" : p256,
+			 "auth" : auth
+			};
+		
+		$.ajax({
+			url: 'http://pwawebapi.azurewebsites.net/api/house/create',
+			type: 'POST',			
+			ata: JSON.stringify(arr),
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			async: false,
+			success: function(msg) {
+				alert(msg);
+			},
+			error: function(msg){
+				alert(msg.responseText);
+			}
+		});
 		endpointWithSubscriptionId = subscription.endpoint;
         var pushButton = document.querySelector('.js-push-button');
         pushButton.disabled = false;
