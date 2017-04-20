@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A basic push demo">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Push Sample</title>
+
+    <!-- Add to homescreen -->
+    <link rel="manifest" href="manifest_new.json">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <header>
+      <h1>Push Demo</h1>
+    </header>
+    
+    <main>
+      <p class="center">
+        <button class="js-push-button" >
+          Enable Push Messages
+        </button>
+		
+		<input type="button" onclick ="pushMessage()" value = "Push Message">
+		<input type="button" onclick ="getLocation()" value = "Distance">
+		
+      </p>
+	  
+    </main>
+	<div id = "demo"> Here comes location details </div>
+	<br/>
+	<div id = "distance">
+	Here comes distance
+<div/>	
+    <script src="main_1.js"></script>
+	<script>
+	var x = document.getElementById("demo");
+	
+	var distanceDiv = document.getElementById("distance");
+	function getLocation() {
+			
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		} else {
+			x.innerHTML = "Geolocation is not supported by this browser.";
+		}
+	}
+	function showPosition(position) {
+		var lon1 = 80.1709; // Chennai airport longitude
+		var lon2 = position.coords.longitude;//80.1275; 
+		var lat1 = 12.9941; //Chennai airport latitude
+		var lat2 = position.coords.latitude;//12.9229;
+		
+		var lat1Radians = lat1 *(Math.PI/180);
+		var lat2Radians = lat2*(Math.PI/180);
+		
+	    var earthRadius = 6371e3 ;//meters
+		var dlon = (lon2 - lon1)*(Math.PI/180);
+		var dlat = (lat2 - lat1)*(Math.PI/180);
+		//sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)
+		var a = Math.pow((Math.sin(dlat/2)),2) + Math.cos(lat1Radians) * Math.cos(lat2Radians) * Math.pow((Math.sin(dlon/2)),2) 
+		var c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) ) 
+		var distance = earthRadius * c ;
+		distanceDiv.innerHTML = "Distance From Chennai Airport : " + distance/1000 + "km";
+	
+		x.innerHTML = "Latitude: " + position.coords.latitude + 
+		"<br>Longitude: " + position.coords.longitude; 
+	}
+	</script>
+
+    <!-- Built with love using Web Starter Kit -->
+  </body>
+</html>
