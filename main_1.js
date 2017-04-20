@@ -177,57 +177,63 @@ alert("notification");
 	// Do we already have a push message scubscription?
     serviceWorkerRegistration.pushManager.getSubscription()
       .then(function(subscription) {
-        // Enable any UI which subscribes / unsubscribes from
-        // push messages
-		alert("p256 :" +  subscription.getKey('p256dh'));
-		alert("auth :" + subscription.getKey('auth'));
-		var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
-		var p256key = rawKey ?
-        		btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) :
-       			 '';
-		var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
-		var authSecret = rawAuthSecret ?
-               btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) :
-               '';
-        // TODO: Send the subscriptionId and Endpoint to your server
-        // and save it to send a push message at a later date
-        var subscriptionId = subscription.subscriptionId;
-        var endpoint = subscription.endpoint;
-		var arr = { 
-			"Endpoint" : endpoint,
-			 "P256" : p256key,
-			 "Auth" : authSecret
-			};
-		
-		$.ajax({
-			url: 'https://pwawebapi.azurewebsites.net/api/house/create',
-			type: 'POST',			
-			data: JSON.stringify(arr),
-			contentType: 'application/json; charset=utf-8',
-			dataType: 'json',
-			async: false,
-			success: function(msg) {
-				alert(msg);
-			},
-			error: function(msg){
-				alert(msg.responseText);
+	    if(!subscription)
+	  {
+			subscribeToPushManager();	
+	  }
+	  else
+	  {
+			// Enable any UI which subscribes / unsubscribes from
+			// push messages
+			var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
+			var p256key = rawKey ?
+					btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) :
+					 '';
+			var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+			var authSecret = rawAuthSecret ?
+				   btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) :
+				   '';
+			// TODO: Send the subscriptionId and Endpoint to your server
+			// and save it to send a push message at a later date
+			var subscriptionId = subscription.subscriptionId;
+			var endpoint = subscription.endpoint;
+			var arr = { 
+				"Endpoint" : endpoint,
+				 "P256" : p256key,
+				 "Auth" : authSecret
+				};
+			
+			$.ajax({
+				url: 'https://pwawebapi.azurewebsites.net/api/house/create',
+				type: 'POST',			
+				data: JSON.stringify(arr),
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				async: false,
+				success: function(msg) {
+					alert(msg);
+				},
+				error: function(msg){
+					alert(msg.responseText);
+				}
+			});
+			endpointWithSubscriptionId = subscription.endpoint;
+			var pushButton = document.querySelector('.js-push-button');
+			pushButton.disabled = false;
+
+			if (!subscription) {
+			  // We aren’t subscribed to push, so set UI
+			  // to allow the user to enable push
+			  return;
 			}
-		});
-		endpointWithSubscriptionId = subscription.endpoint;
-        var pushButton = document.querySelector('.js-push-button');
-        pushButton.disabled = false;
 
-        if (!subscription) {
-          // We aren’t subscribed to push, so set UI
-          // to allow the user to enable push
-          return;
-        }
-
-        // Set your UI to show they have subscribed for
-        // push messages
-        pushButton.textContent = 'Disable Push Messages';
-        //isPushEnabled = true;
+			// Set your UI to show they have subscribed for
+			// push messages
+			pushButton.textContent = 'Disable Push Messages';
+			//isPushEnabled = true;
+      }
       })
+
       .catch(function(err) {
         console.warn('Error during getSubscription()', err);
       });
