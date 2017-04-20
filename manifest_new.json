@@ -5,7 +5,7 @@
         "src": "images/icon-192x192.png",
         "sizes": "192x192"
       }],
-  "start_url": "/index.html?homescreen=1",
+  "start_url": "https://hitgubsenthil.github.io/TestProgressiveWeb.github.io",
   "display": "standalone",
   "gcm_sender_id": "165185291530",
   "gcm_user_visible_only": true
