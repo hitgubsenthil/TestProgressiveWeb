@@ -97,7 +97,7 @@ function subscribeToPushManager() {
 		var arr = { 
 				"Endpoint" : endpoint,
 			 "P256" : p256,
-			 "auth" : auth
+			 "Auth" : auth
 			};
 		
 		$.ajax({
@@ -183,7 +183,7 @@ alert("notification");
 		var arr = { 
 			"Endpoint" : endpoint,
 			 "P256" : p256,
-			 "auth" : auth
+			 "Auth" : auth
 			};
 		
 		$.ajax({
