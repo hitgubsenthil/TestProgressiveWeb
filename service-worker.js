@@ -33,4 +33,9 @@ self.addEventListener('pushsubscriptionlost', function(event) {
 
 self.addEventListener('notificationclick', function(event) {
   console.log('On notification click: ', event);
+  event.notification.close();
+
+  event.waitUntil(
+    clients.openWindow('https://hitgubsenthil.github.io/TestProgressiveWeb.github.io/')
+  );
 });
