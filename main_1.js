@@ -88,16 +88,23 @@ function subscribeToPushManager() {
        // isPushEnabled = true;
 		alert("p256 :" +  subscription.getKey('p256dh'));
 		alert("auth :" + subscription.getKey('auth'));
-		var p256 = subscription.getKey('p256dh');
-		var auth = subscription.getKey('auth');
+		
+	    var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
+		var p256key = rawKey ?
+        btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) :
+        '';
+		var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+		var authSecret = rawAuthSecret ?
+               btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) :
+               '';
         // TODO: Send the subscriptionId and Endpoint to your server
         // and save it to send a push message at a later date
         var subscriptionId = subscription.subscriptionId;
         var endpoint = subscription.endpoint;
 		var arr = { 
 				"Endpoint" : endpoint,
-			 "P256" : p256,
-			 "Auth" : auth
+			 "P256" : p256key,
+			 "Auth" : authSecret
 			};
 		
 		$.ajax({
@@ -174,16 +181,22 @@ alert("notification");
         // push messages
 		alert("p256 :" +  subscription.getKey('p256dh'));
 		alert("auth :" + subscription.getKey('auth'));
-		var p256 = subscription.getKey('p256dh');
-		var auth = subscription.getKey('auth');
+		var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
+		var p256key = rawKey ?
+        		btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) :
+       			 '';
+		var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+		var authSecret = rawAuthSecret ?
+               btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) :
+               '';
         // TODO: Send the subscriptionId and Endpoint to your server
         // and save it to send a push message at a later date
         var subscriptionId = subscription.subscriptionId;
         var endpoint = subscription.endpoint;
 		var arr = { 
 			"Endpoint" : endpoint,
-			 "P256" : p256,
-			 "Auth" : auth
+			 "P256" : p256key,
+			 "Auth" : authSecret
 			};
 		
 		$.ajax({
