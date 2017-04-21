@@ -211,7 +211,7 @@ function initialiseState() {
 				dataType: 'json',
 				async: false,
 				success: function(msg) {
-					alert(msg);
+					//alert(msg);
 				},
 				error: function(msg){
 					alert(msg.responseText);
