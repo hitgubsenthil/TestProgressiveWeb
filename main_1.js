@@ -116,7 +116,9 @@ function subscribeToPushManager() {
 			async: false,
 			success: function(msg) {
 				var pushlbl = document.getElementById('push');
+				var pushlbl1 = document.getElementById('push1');
 				pushlbl.innerHTML="Reg";
+				pushlbl1.innerHTML="Reg";
 				//alert(msg);
 			},
 			error: function(msg){
@@ -214,7 +216,9 @@ function initialiseState() {
 				async: false,
 				success: function(msg) {
 					var pushlbl = document.getElementById('push');
+					var pushlbl1 = document.getElementById('push1');
 					pushlbl.innerHTML="Reg";
+					pushlbl1.innerHTML="Reg";
 					//alert(msg);
 				},
 				error: function(msg){
