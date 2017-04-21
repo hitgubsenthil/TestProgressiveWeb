@@ -86,8 +86,8 @@ function subscribeToPushManager() {
       .then(function(subscription) {
         // The subscription was successful
        // isPushEnabled = true;
-		alert("p256 :" +  subscription.getKey('p256dh'));
-		alert("auth :" + subscription.getKey('auth'));
+		//alert("p256 :" +  subscription.getKey('p256dh'));
+		//alert("auth :" + subscription.getKey('auth'));
 		
 	    var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
 		var p256key = rawKey ?
@@ -115,7 +115,7 @@ function subscribeToPushManager() {
 			dataType: 'json',
 			async: false,
 			success: function(msg) {
-				alert(msg);
+				//alert(msg);
 			},
 			error: function(msg){
 				alert(msg.responseText);
@@ -149,7 +149,7 @@ function subscribeToPushManager() {
 
 // Once the service worker is registered set the initial state
 function initialiseState() {
-alert("notification");
+//alert("notification");
   // Are Notifications supported?
   if (!('Notification' in window)) {
     console.warn('Notifications aren\'t supported.');
