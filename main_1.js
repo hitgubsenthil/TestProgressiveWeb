@@ -115,6 +115,8 @@ function subscribeToPushManager() {
 			dataType: 'json',
 			async: false,
 			success: function(msg) {
+				var pushlbl = document.getElementById('push');
+				pushlbl.innerHTML="Reg";
 				//alert(msg);
 			},
 			error: function(msg){
@@ -211,6 +213,8 @@ function initialiseState() {
 				dataType: 'json',
 				async: false,
 				success: function(msg) {
+					var pushlbl = document.getElementById('push');
+					pushlbl.innerHTML="Reg";
 					//alert(msg);
 				},
 				error: function(msg){
