@@ -47,7 +47,7 @@
 			alert("Entered");
 			alert(navigator.geolocation);
 			alert("2nd enter");
-			if (navigator.geolocation) {
+			if (navigator.geolocation != null || navigator.geolocation != undefined) {
 				navigator.geolocation.getCurrentPosition(showPosition);
 			} else {
 				$("#demo").html("Geolocation is not supported by this browser.");
