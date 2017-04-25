@@ -46,6 +46,7 @@
 		$("#btnLocation").click(function(){
 			alert("Entered");
 			alert(navigator.geolocation);
+			alert("2nd enter");
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(showPosition);
 			} else {
