@@ -39,14 +39,14 @@
     
 	<script type="text/javascript">
 		$(document).ready(function(){
-			var x = document.getElementById("demo");
-			var distanceDiv = document.getElementById("distance");
+			//var x = document.getElementById("demo");
+			//var distanceDiv = document.getElementById("distance");
 			
 		$("#btnLocation").click(function(){
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(showPosition);
 			} else {
-				x.innerHTML = "Geolocation is not supported by this browser.";
+				$("#demo").html("Geolocation is not supported by this browser.");
 			}
 		});
 		$("#btnPushMessage").click(function(){
@@ -68,8 +68,8 @@
 		var distance = earthRadius * c ;
 		distanceDiv.innerHTML = "Distance From Chennai Airport : " + distance/1000 + "km";
 	
-		x.innerHTML = "Latitude: " + position.coords.latitude + 
-		"<br>Longitude: " + position.coords.longitude; 
+		$("#demo").html("Latitude: " + position.coords.latitude + 
+		"<br>Longitude: " + position.coords.longitude); 
 		});	
 		});
 		/*
