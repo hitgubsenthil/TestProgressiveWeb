@@ -38,6 +38,7 @@
 <div/>	
     
 	<script type="text/javascript">
+		
 		$(document).ready(function(){
 			//var x = document.getElementById("demo");
 			//var distanceDiv = document.getElementById("distance");
@@ -72,6 +73,28 @@
 		"<br>Longitude: " + position.coords.longitude); 
 		});	
 		});
+		function showPosition(position) {
+		alert("location");
+		var lon1 = 80.1709; // Chennai airport longitude
+		var lon2 = position.coords.longitude;//80.1275; 
+		var lat1 = 12.9941; //Chennai airport latitude
+		var lat2 = position.coords.latitude;//12.9229;
+		
+		var lat1Radians = lat1 *(Math.PI/180);
+		var lat2Radians = lat2*(Math.PI/180);
+		
+	    var earthRadius = 6371e3 ;//meters
+		var dlon = (lon2 - lon1)*(Math.PI/180);
+		var dlat = (lat2 - lat1)*(Math.PI/180);
+		//sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)
+		var a = Math.pow((Math.sin(dlat/2)),2) + Math.cos(lat1Radians) * Math.cos(lat2Radians) * Math.pow((Math.sin(dlon/2)),2) 
+		var c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) ) 
+		var distance = earthRadius * c ;
+		distanceDiv.innerHTML = "Distance From Chennai Airport : " + distance/1000 + "km";
+	
+		$("#demo").html("Latitude: " + position.coords.latitude + 
+		"<br>Longitude: " + position.coords.longitude); 
+	}
 		/*
 	var x = document.getElementById("demo");
 	var distanceDiv = document.getElementById("distance");
