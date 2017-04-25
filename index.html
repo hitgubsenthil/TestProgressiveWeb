@@ -90,7 +90,7 @@
 		var a = Math.pow((Math.sin(dlat/2)),2) + Math.cos(lat1Radians) * Math.cos(lat2Radians) * Math.pow((Math.sin(dlon/2)),2) 
 		var c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) ) 
 		var distance = earthRadius * c ;
-		distanceDiv.innerHTML = "Distance From Chennai Airport : " + distance/1000 + "km";
+		$("#distance").html("Distance From Chennai Airport : " + distance/1000 + "km");
 	
 		$("#demo").html("Latitude: " + position.coords.latitude + 
 		"<br>Longitude: " + position.coords.longitude); 
