@@ -73,6 +73,7 @@
 		$(document).ready(function(){
 			
 		$("#btnLocation").click(function(){
+			alert("click");
 			if (navigator.geolocation != null || navigator.geolocation != undefined) {
 				alert("true");
 				navigator.geolocation.getCurrentPosition(success,errorHandler,{enableHighAccuracy: true, maximumAge: 10000});
